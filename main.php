@@ -25,6 +25,7 @@
                 <td>{$row['name']}</td>
                 <td>{$row['title']}</td>
                 <td>{$row['date']}</td>
+                <td><a href='update.php?id={$row['id']}'><button>UPDATE</button></a></td>
               </tr> 
             ";
           }

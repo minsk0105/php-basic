@@ -28,7 +28,8 @@
               </tr> 
             ";
           }
-          echo "
+        ?>
+
             <form action='create-process.php' method='post'>
               <tr>
                 <td>아이디</td>
@@ -38,8 +39,6 @@
                 <td><input type='submit' value='submit'></td>
               </tr>
             </form>
-          "
-        ?>
     </table>
 
     <script src="index.js"></script>
