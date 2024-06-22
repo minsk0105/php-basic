@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-collapse: collapse;
+}
+
+th, td {
+    width: 180px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #000;
+    vertical-align: top;
+    vertical-align: bottom;
+    vertical-align: middle;
+}
+
+th {
+    background-color: lightblue;
+}
+
+button {
+    padding: 5px 10px;
+}
+
+input[type='text'] {
+    width: 80%;
+    height: 70%;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+input[type='submit'] {
+    padding: 5px 10px;
+    background-color: bisque;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type='submit']:hover {
+    background-color: rgb(255, 238, 216);
+}
