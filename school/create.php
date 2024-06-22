@@ -17,7 +17,7 @@
         </tr>
         <?php
           $sql = "SELECT * FROM notice";
-          $result = mysqli_query($conn, $sql); 
+          $result = mysqli_query($conn, $sql);
           while($row = mysqli_fetch_array($result)) {
             echo "
               <tr>
