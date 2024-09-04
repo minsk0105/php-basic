@@ -6,12 +6,23 @@
     <title>if 조건문</title>
 </head>
 <body>
-    <h1><a href="index.php">WEB</a></h1>
+    <h1><a href="conjugation.php">WEB</a></h1>
     <ol>
-        <li><a href="index.php?id=HTML">HTML</a></li>
-        <li><a href="index.php?id=CSS">CSS</a></li>
-        <li><a href="index.php?id=JavaScript">JavaScript</a></li>
-        <li><a href="index.php?id=PHP">PHP</a></li>
+        <?php
+            $list = scandir('./Data');
+            // scandir()을 통해 Data라는 폴더에 파일을 배열로 담음.
+
+            $i = 0;
+            while ($i < count($list)) {
+                echo "<li><a href=\"conjugation.php?id=$list[$i]\">$list[$i]</a></li>\n";
+                // li > a에 링크를 Data 폴더의 파일들을 경로로 지정하고 해당 링크를 클릭하면 지정된 경로의 파일 내용들을 출력
+                $i = $i + 1;
+                // 반복문이 실행될 때마다 i값을 1씩 증가시키기
+            }
+
+
+            // echo "<li>$list[0]</li>\n"; // \n은 줄바꿈을 의미
+        ?>
     </ol>
 
     <h2>
