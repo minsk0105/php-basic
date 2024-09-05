@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+li {
+    list-style: none;
+    padding-left: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    padding: 20px;
+}
+
+input {
+    padding: 5px 15px;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+input[type=submit] {
+    background-color: inherit;
+    border: 1px solid gray;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(195, 195, 195);
+}
+
+th {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+}
+
+tbody {
+    display: flex;
+}
+
+td {
+    display: block;
+    width: 150px;
+    text-align: center;
+}
