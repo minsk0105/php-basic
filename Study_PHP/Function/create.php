@@ -1,3 +1,4 @@
+<h1>Create (추가/생성)</h1>
 <!-- 해당 리스트의 타이틀 -->
 <?php
     function print_title() {
