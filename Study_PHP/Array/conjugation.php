@@ -14,7 +14,11 @@
 
             $i = 0;
             while ($i < count($list)) {
-                echo "<li><a href=\"conjugation.php?id=$list[$i]\">$list[$i]</a></li>\n";
+                if ($list[$i] != '.') {
+                    if ($list[$i] != '..') {
+                        echo "<li><a href=\"conjugation.php?id=$list[$i]\">$list[$i]</a></li>\n";
+                    }
+                }
                 // li > a에 링크를 Data 폴더의 파일들을 경로로 지정하고 해당 링크를 클릭하면 지정된 경로의 파일 내용들을 출력
                 $i = $i + 1;
                 // 반복문이 실행될 때마다 i값을 1씩 증가시키기
