@@ -2,7 +2,8 @@
 <?php
     function print_title() {
         if (isset($_GET['id'])) { // URL 창에 id값이 있다면
-            echo $_GET['id']; // 해당 값을 출력
+            echo htmlspecialchars($_GET['id']); // 해당 값을 출력
+            // 사용자가 입력한 값을 모두 html 형태로 변경하여 XSS를 차단함
         } else {
             echo "Welcome"; // id값이 없다면 "Welcome"을 출력
         }
@@ -13,7 +14,7 @@
 <?php
     function print_description() {
         if (isset($_GET['id'])) {
-            echo file_get_contents("Data/".$_GET['id']); // 값이 있다면 Data 폹더에 id값과 같은 이름의 파일의 텍스트를 출력
+            echo htmlspecialchars(file_get_contents("Data/".$_GET['id'])); // 값이 있다면 Data 폹더에 id값과 같은 이름의 파일의 텍스트를 출력
         } else {
             echo "Hello, PHP!"; // 값이 없다면 해당 문자열 출력
         }
@@ -28,9 +29,10 @@
 
         $i = 0;
         while ($i < count($list)) {
+            $title = htmlspecialchars($list[$i]);
             if ($list[$i] != '.') {
                 if ($list[$i] != '..') {
-                    echo "<li><a href=\"function2.php?id=$list[$i]\">$list[$i]</a></li>\n";
+                    echo "<li><a href=\"function2.php?id=$title\">$title</a></li>\n";
                 }
             }
             // li > a에 링크를 Data 폴더의 파일들을 경로로 지정하고 해당 링크를 클릭하면 지정된 경로의 파일 내용들을 출력
