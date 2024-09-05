@@ -11,7 +11,7 @@
     <form action="submit.php" method="post">
         <input type="text" name="name" placeholder="이름"><br>
         <input type="text" name="address" placeholder="주소"><br>
-        <input type="submit" value="확인">
+        <input type="submit" value="확인"><br>
         <a href="index.php" style="cursor: pointer;">Home</a>
     </form>
 
@@ -71,12 +71,7 @@
             <tr>
                 <td>
                     <?php
-                        if (isset($_GET['address'])) {
-                            $addr = $_GET['address'];
-                            print_nation();
-                        } else {
-                            echo "<td>hello</td>";
-                        }
+                        print_nation();
                     ?>
                 </td>
             </tr>
