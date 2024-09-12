@@ -47,15 +47,10 @@
     <ol>
         <?=$list?>
     </ol>
-
-    <a href="create.php">create</a>
-
-    <h2>
-        <?=$article['title']?>
-    </h2>
-    <p>
-        <?=$article['description']?>
-    </p>
-
+    <form action="process_create.php" method="post">
+        <p><input type="text" name="title" placeholder="title"></p>
+        <p><textarea name="description" placeholder="description"></textarea></p>
+        <p><input type="submit" value="submit"></p>
+    </form>
 </body>
 </html>
