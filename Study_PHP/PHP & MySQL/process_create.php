@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '1234', 'opentutorials');
+    $conn = mysqli_connect('localhost', 'root', '', 'opentutorials');
     $sql = "
         INSERT INTO topic
             (title, description, created)

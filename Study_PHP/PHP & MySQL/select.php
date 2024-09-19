@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root' , '1234', 'opentutorials');
+    $conn = mysqli_connect('localhost', 'root' , '', 'opentutorials');
     echo "<h1>Single Row</h1>";
     $sql = "
         SELECT * FROM topic WHERE id = 8
