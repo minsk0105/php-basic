@@ -12,53 +12,68 @@ body {
     align-items: center;
 }
 
+main {
+    width: 1320px;
+}
+
 table {
-    width: 900px;
     border-collapse: collapse;
-}
-
-.table-header {
-    width: 900px;
-    height: 80px;
-    line-height: 80px;
-    background-color: rgb(30, 30, 30);
-    color: #eee;
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 500;
-}
-
-.input-table tr {
     width: 100%;
-    line-height: 70px;
-    border-top: 2px solid rgb(212, 212, 212);
-    border-bottom: 2px solid rgb(212, 212, 212);
 }
 
 .title {
-    width: 150px;
-    font-size: 18px;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    color: #eee;
+    font-size: 30px;
     font-weight: bold;
-    padding-left: 20px;
+    background-color: rgb(30, 30, 30);
+    border-radius: 15px;
 }
 
-.input-table textarea {
-    margin-top: 25px;
-    font-size: 18px;
-}
-
-.input-table input {
-    font-size: 18px;
-    padding: 5px 10px;
-}
-
-center {
+.list-table {
     margin-top: 20px;
 }
 
-center input {
+.list-table tr {
+    height: 70px;
+}
+
+.list-table td {
+    border-top: 1px solid rgb(195, 195, 195);
+    border-bottom: 1px solid rgb(195, 195, 195);
+    padding-left: 20px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.list-table input {
     padding: 5px 10px;
+    height: 30px;
+    font-size: 14px;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 5px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.home {
+    display: inline-block;
+    margin: 0 20px;
     cursor: pointer;
     font-size: 18px;
 }
