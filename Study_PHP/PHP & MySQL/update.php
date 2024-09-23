@@ -22,11 +22,8 @@
         'description' => 'Hello, WEB'
     );
 
-    $update_link = '';
-
     if (isset($_GET['id'])) {
         $filtered_id = mysqli_real_escape_string($conn, $_GET['id']);
-        // mysqli_real_escape_string을 통해 읽어오거나 전송할 url값을 문자열로 변환시켜 sql조작과 같은 공격을 막을 수 있음.
         $desc_sql = "
         SELECT * FROM topic WHERE id={$filtered_id}
         ";
@@ -34,11 +31,9 @@
         $desc_row = mysqli_fetch_array($desc_result);
         $article = array( // 배열 함수
             'title' => htmlspecialchars($desc_row['title']),
-            'description' => htmlspecialchars($desc_row['description']) // htmlspecialchars()를 통해 사용자가 입력한 url값을 문자열화 시켜 외부의 공격을 막아줌
+            'description' => htmlspecialchars($desc_row['description'])
         ); // 필요에 따른 데이터 값을 각각의 배열에 담음
         // 배열의 키 값이 숫자가 아닌 문자열인 배열 = 연관배열
-
-        $update_link = '<a href="update.php?id='.$_GET['id'].'">update</a>';
     }
 ?>
 <!DOCTYPE html>
@@ -54,16 +49,11 @@
     <ol>
         <?=$list?>
     </ol>
-
-    <a href="create.php">create</a>
-    <?=$update_link?>
-
-    <h2>
-        <?=$article['title']?>
-    </h2>
-    <p>
-        <?=$article['description']?>
-    </p>
-
+    <form action="process_update.php" method="post">
+        <input type="hidden" name="id" value="<?=$_GET['id']?>">
+        <p><input type="text" name="title" placeholder="title" value="<?=$article['title']?>"></p>
+        <p><textarea name="description" placeholder="description"><?=$article['description']?></textarea></p>
+        <p><input type="submit" value="submit"></p>
+    </form>
 </body>
 </html>
