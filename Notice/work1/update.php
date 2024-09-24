@@ -21,6 +21,21 @@
     } else {
         echo "쿼리 실패 : ". mysqli_error($conn);
     }
+
+    if (isset($_GET['id'])) {
+        $filtered_id = mysqli_real_escape_string($conn, $_GET['id']);
+        $desc_sql = "
+            SELECT * FROM board WHERE id = {$filtered_id}
+        ";
+        $desc_result = mysqli_query($conn, $desc_sql);
+        $desc_row = mysqli_fetch_array($desc_result);
+        $article = array (
+            'name' => htmlspecialchars($desc_row['name']),
+            'tel' => htmlspecialchars($desc_row['tel']),
+            'born' => htmlspecialchars($desc_row['born']),
+            'date' => htmlspecialchars($desc_row['date'])
+        );
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -31,7 +46,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="write_action.php" method="post">
+    <form action="process_update.php" method="post">
         <main>
             <table>
                 <tr>
@@ -50,20 +65,22 @@
                         <?=$list?>
 
                         <tr>
-                            <td>예약번호</td>
+                            <input type="hidden" name="edit" value="<?=$_GET['id']?>">
+                            <td><?=$_GET['id']?></td>
                             <td>
-                                <input type="text" name="name" id="name">
+                                <input type="text" name="name" id="name" value="<?=$article['name']?>">
                             </td>
                             <td>
-                                <input type="text" name="tel" id="tel">
+                                <input type="text" name="tel" id="tel" value="<?=$article['tel']?>">
                             </td>
                             <td>
-                                <input type="text" name="born" id="born">
+                                <input type="text" name="born" id="born" value="<?=$article['born']?>">
                             </td>
-                            <td>예약일시</td>
+                            <td><?=$article['date']?></td>
+                            <td><a href="write.php" style="cursor: pointer;">뒤로가기</a></td>
                         </tr>
                     </table>
-                    <input type="submit" value="예약" id="submit">
+                    <input type="submit" value="수정" id="submit">
                 </tr>
             </table>
         </main>

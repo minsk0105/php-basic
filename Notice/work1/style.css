@@ -12,6 +12,16 @@ body {
     align-items: center;
 }
 
+li {
+    list-style: none;
+    padding-left: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 main {
     width: 1320px;
 }
@@ -76,4 +86,11 @@ input[type="submit"] {
     margin: 0 20px;
     cursor: pointer;
     font-size: 18px;
+}
+
+.update {
+    background-color: lightblue;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
