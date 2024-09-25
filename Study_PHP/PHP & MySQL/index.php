@@ -23,6 +23,7 @@
     );
 
     $update_link = '';
+    $delete_link = '';
 
     if (isset($_GET['id'])) {
         $filtered_id = mysqli_real_escape_string($conn, $_GET['id']);
@@ -39,6 +40,13 @@
         // 배열의 키 값이 숫자가 아닌 문자열인 배열 = 연관배열
 
         $update_link = '<a href="update.php?id='.$_GET['id'].'">update</a>';
+        // $delete_link = '<a href="process_delete.php?id='.$_GET['id'].'">delete</a>';
+        $delete_link= '
+            <form action="process_delete.php" method="post">
+                <input type="hidden" name="id" value="'.$_GET['id'].'">
+                <input type="submit" value="delete">
+            </form>
+        ';
     }
 ?>
 <!DOCTYPE html>
@@ -57,6 +65,7 @@
 
     <a href="create.php">create</a>
     <?=$update_link?>
+    <?=$delete_link?>
 
     <h2>
         <?=$article['title']?>
