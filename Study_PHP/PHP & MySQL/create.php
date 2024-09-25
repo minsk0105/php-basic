@@ -17,10 +17,16 @@
         // '.'은 php에서 결합연산자로 쓰임
     }
 
-    $article = array( // 배열 함수
-        'title' => 'Welcome!',
-        'description' => 'Hello, WEB'
-    );
+    $author_sql = "
+        SELECT * FROM author
+    ";
+    $result_sql = mysqli_query($conn, $author_sql);
+    $select_form = '<select name="author_id">';
+    
+    while ($author_row = mysqli_fetch_array($result_sql)) {
+        $select_form .= '<option value="'.$author_row['id'].'">'.$author_row['name'].'</option>';
+    }
+    $select_form .= '</select>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +44,7 @@
     <form action="process_create.php" method="post">
         <p><input type="text" name="title" placeholder="title"></p>
         <p><textarea name="description" placeholder="description"></textarea></p>
+        <?=$select_form?>
         <p><input type="submit" value="submit"></p>
     </form>
 </body>

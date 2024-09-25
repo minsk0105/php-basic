@@ -24,18 +24,20 @@
 
     $update_link = '';
     $delete_link = '';
+    $author = '';
 
     if (isset($_GET['id'])) {
         $filtered_id = mysqli_real_escape_string($conn, $_GET['id']);
         // mysqli_real_escape_string을 통해 읽어오거나 전송할 url값을 문자열로 변환시켜 sql조작과 같은 공격을 막을 수 있음.
         $desc_sql = "
-        SELECT * FROM topic WHERE id={$filtered_id}
+            SELECT * FROM topic LEFT JOIN author ON topic.author_id = author.id WHERE topic.id={$filtered_id}
         ";
         $desc_result = mysqli_query($conn, $desc_sql);
         $desc_row = mysqli_fetch_array($desc_result);
         $article = array( // 배열 함수
             'title' => htmlspecialchars($desc_row['title']),
-            'description' => htmlspecialchars($desc_row['description']) // htmlspecialchars()를 통해 사용자가 입력한 url값을 문자열화 시켜 외부의 공격을 막아줌
+            'description' => htmlspecialchars($desc_row['description']), // htmlspecialchars()를 통해 사용자가 입력한 url값을 문자열화 시켜 외부의 공격을 막아줌
+            'name' => htmlspecialchars($desc_row['name'])
         ); // 필요에 따른 데이터 값을 각각의 배열에 담음
         // 배열의 키 값이 숫자가 아닌 문자열인 배열 = 연관배열
 
@@ -47,6 +49,8 @@
                 <input type="submit" value="delete">
             </form>
         ';
+
+        $author = "<p>by {$article['name']}</p>";
     }
 ?>
 <!DOCTYPE html>
@@ -59,6 +63,11 @@
 <body>
 
     <h1><a href="index.php">WEB</a></h1>
+
+    <p>
+        <a href="author.php">author</a>
+    </p>
+
     <ol>
         <?=$list?>
     </ol>
@@ -73,6 +82,8 @@
     <p>
         <?=$article['description']?>
     </p>
+
+    <?=$author?>
 
 </body>
 </html>
