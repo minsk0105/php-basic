@@ -4,6 +4,9 @@
         SELECT * FROM board
     ";
     $read = mysqli_query($conn, $sql);
+    $delete_link = '
+
+    ';
     $list = '';
     if ($read) {
         while ($row = mysqli_fetch_array($read)) {
@@ -15,6 +18,12 @@
                     <td>{$row['born']}</td>
                     <td>{$row['date']}</td>
                     <td><a href=\"update.php?id={$row['id']}\" class=\"update\">업데이트</a></td>
+                    <td>
+                        <form action=\"process_delete.php\" method=\"post\">
+                            <input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">
+                            <input type=\"submit\" value=\"삭제\" class=\"update delete_btn\">
+                        </form>
+                    </td>
                 </tr>
             ";
         }
@@ -31,24 +40,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="write_action.php" method="post">
-        <main>
-            <table>
-                <tr>
-                    <td class="title">게시판</td>
-                </tr>
-                <tr>
-                    <table class="list-table">
-                        <tr>
-                            <td>예약번호</td>
-                            <td>성명</td>
-                            <td>전화번호</td>
-                            <td>생년월일</td>
-                            <td>예약일시</td>
-                        </tr>
+    <main>
+        <table>
+            <tr>
+                <td class="title">게시판</td>
+            </tr>
+            <tr>
+                <table class="list-table">
+                    <tr>
+                        <td>예약번호</td>
+                        <td>성명</td>
+                        <td>전화번호</td>
+                        <td>생년월일</td>
+                        <td>예약일시</td>
+                    </tr>
+                    <?=$list?>
 
-                        <?=$list?>
-
+                    <form action="write_action.php" method="post">
                         <tr>
                             <td>예약번호</td>
                             <td>
@@ -62,12 +70,12 @@
                             </td>
                             <td>예약일시</td>
                         </tr>
-                    </table>
-                    <input type="submit" value="예약" id="submit">
-                </tr>
-            </table>
-        </main>
-    </form>
+                        <input type="submit" value="예약" id="submit">
+                    </form>
+                </table>
+            </tr>
+        </table>
+    </main>
 
     <script src="write.js"></script>
 </body>

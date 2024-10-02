@@ -23,3 +23,14 @@ submitBtn.addEventListener('click', function(event) {
         return false;
     }
 });
+
+const deleteBtn = document.querySelectorAll('.delete_btn');
+
+deleteBtn.forEach(function(btn) {
+    btn.addEventListener('click', function(event) {
+        if (!confirm('삭제하시겠습니까?')) {
+            event.preventDefault();
+            return false;
+        }
+    });
+});
