@@ -41,6 +41,7 @@
         <input type="submit" value="업로드">
 
     </form>
+    <a href="file_list.php">파일 목록 조회</a>
 
 </body>
 </html>

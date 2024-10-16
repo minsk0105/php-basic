@@ -1,0 +1,29 @@
+상담신청 폼 데이터베이스 구성
+
+CREATE DATABASE consult_form;
+USE consult_form;
+
+CREATE TABLE counsel (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	name varchar(15) NOT NULL,
+	phone varchar(15) NOT NULL,
+	email varchar(50) NOT NULL,
+	date varchar(25) NOT NULL,
+	text text NOT NULL,
+	method varchar(25) NOT NULL,
+	PRIMARY KEY(id));
+
+위에서부터
+데이터베이스 이름 : consult_form;
+consult_form 선택
+
+테이블 이름 : counsel
+해당 테이블 안에 들어갈 컬럼
+id : 신청 목록 아이디
+name : 신청자 이름
+phone : 신청자 전화번호
+email : 신청자 이메일
+date : 예약일자
+text : 문의사항
+method : 상담 방식 여부
+주 키 : id

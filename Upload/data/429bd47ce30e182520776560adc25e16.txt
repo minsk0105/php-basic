@@ -1,0 +1,12 @@
+<회원가입 데이터 테이블>
+
+CREATE TABLE members (
+	no INT NOT NULL AUTO_INCREMENT,
+	mb_name VARCHAR(25) NOT NULL,
+	mb_phone VARCHAR(45) NOT NULL,
+	mb_email VARCHAR(60) NOT NULL,
+	mb_id VARCHAR(40) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	mb_addr VARCHAR(255) NOT NULL,
+	PRIMARY KEY(no)
+);
