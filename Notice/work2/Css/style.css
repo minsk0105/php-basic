@@ -11,6 +11,12 @@ body {
     justify-content: center;
 }
 
+a {
+    text-decoration: none;
+    color: #2d7ce3;
+    cursor: pointer;
+}
+
 h1 {
     margin: 15px 0;
 }
@@ -23,6 +29,7 @@ h4 {
     text-align: center;
     border: 1px solid #ddddda;
     border-collapse: collapse;
+    overflow: hidden;
 }
 
 th {
@@ -48,6 +55,8 @@ td:nth-of-type(5) {
 
 td {
     padding: 10px 5px;
+    border-bottom: 1px solid #ddddda;
+    background-color: #fdfdfd;
 }
 
 .read_check {
@@ -57,4 +66,43 @@ td {
 #page_num {
     margin-top: 20px;
     text-align: center;
+}
+
+#write_btn {
+    display: flex;
+    justify-content: right;
+}
+
+#search_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+select {
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn_primary {
+    background-color: #2d7ce3;
+    color: #eee;
+    font-size: 16px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+input {
+    padding: 5px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid gray;
 }

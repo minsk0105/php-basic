@@ -47,7 +47,7 @@
                     $total_record = mysqli_num_rows($page_query); // 테이블에 있는 모든 레코드 수
 
                     $list = 5; // 한 페이지 보여줄 개수
-                    $block_cnt = 5; // 블록당 보여줄 페이지의 개수
+                    $block_cnt = 5; // 페이지당 보여지는 블록 개수
                     $block_num = ceil($page / $block_cnt); // ceil() = 인자 값을 무조건 올림 처리 / 현재 페이지를 $block_cnt로 나눔으로써 현재 페이지 블록을 저장
                     $block_start = (($block_num - 1) * $block_cnt) + 1; // 블록의 시작 번호 ex) 1, 6, 11
                     $block_end = $block_start + $block_cnt - 1; // 블록의 마지막 번호 ex) 5, 10, 15
@@ -63,7 +63,7 @@
                     // 게시글 정보 가져오기
                     $getBoard_sql = "SELECT * FROM notice_board
                         ORDER BY idx DESC LIMIT $page_start, $list
-                    ";
+                    "; // LIMIT n+1번째부터, n개를 검색한다
                     $getBoard_query = mysqli_query($conn, $getBoard_sql);
                 ?>
 
@@ -88,7 +88,7 @@
                             </tr>
                         </tbody>
                             
-                    <?php } ?>
+                <?php } ?>
 
             </table>
 
@@ -97,14 +97,14 @@
                         if ($page <= 1) {
                             // 빈 값
                         } else {
-                            echo "<a href='list.php?page=1'>처음</a>";
+                            echo "<a href='index.php?page=1'> 처음 </a>";
                         }
                     
                         if ($page <= 1) {
                             // empty value
                         } else {
                             $prev = $page - 1;
-                            echo "<a href='list.php?page=$prev'>◀ 이전</a>";
+                            echo "<a href='index.php?page=$prev'>◀</a>";
                         }
                     
                         for ($i = $block_start; $i <= $block_end; $i++) {
@@ -112,7 +112,7 @@
                             if ($page == $i) {
                                 echo "<b> $i </b>";
                             } else {
-                                echo "<a href='list.php?page=$i'> $i </a>";
+                                echo "<a href='index.php?page=$i'> $i </a>";
                             }
                         
                         }
@@ -121,15 +121,37 @@
                             // empty value
                         } else {
                             $next = $page + 1;
-                            echo "<a href='list.php?page=$next'>다음 ▶</a>";
+                            echo "<a href='index.php?page=$next'>▶</a>";
                         }
                     
                         if ($page >= $total_page) {
                             // empty value
                         } else {
-                            echo "<a href='list.php?page=$total_page'> 마지막 </a>";
+                            echo "<a href='index.php?page=$total_page'> 마지막 </a>";
                         }
                     ?>
+            </div>
+
+            <div id="write_btn">
+                <a href="write.php">
+                    <button class="btn btn_primary pull_right">글쓰기</button>
+                </a>
+            </div>
+
+            <div id="search_box">
+
+                <form action="search_result.php" method="get">
+                    <select name="category">
+                        <option value="title">제목</option>
+                        <option value="name">글쓴이</option>
+                        <option value="content">내용</option>
+                    </select>
+
+                    <input type="text" name="search" size="40" required="required">
+
+                    <button class="btn btn_primary">검색</button>
+                </form>
+
             </div>
         </div>
 
