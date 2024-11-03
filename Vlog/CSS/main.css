@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+    color: var(--font-color);
+}
+
+:root {
+    --font-color: rgb(30, 30, 30);
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f6f3f2;
+}
