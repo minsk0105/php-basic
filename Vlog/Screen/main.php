@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vlog 메인 페이지</title>
-    <link rel="stylesheet" href="../CSS/main.css">
-</head>
+<?php require_once("../Common/top.php") ?>
 <body>
-    
+
+    <header id="header">
+        <h1 class="logo">PHP_Vlog</h1>
+        <a href="login.php">
+            <button class="login_btn">로그인</button>
+        </a>
+    </header>
+
 </body>
 </html>
