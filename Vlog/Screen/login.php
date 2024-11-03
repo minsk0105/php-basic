@@ -14,6 +14,7 @@
                 <input type="submit" value="로그인" class="submit_btn">
             </form>
         </div>
+        <a href="main.php">← 이전으로</a>
     </div>
 
     <script src="../Js/login.js"></script>
