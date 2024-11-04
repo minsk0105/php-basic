@@ -13,5 +13,13 @@
         </div>
     </header>
 
+    <section id="intro">
+        <h1>웹사이트 소개</h1>
+        <p>이 웹 사이트는 '서버프로그래밍' 수업의 기말 프로젝트를 위해서 PHP를 이용해 간단하게 구현한 게시판입니다.</p>
+        <a href="">
+            <button type="button">게시판 바로가기</button>
+        </a>
+    </section>
+
 </body>
 </html>

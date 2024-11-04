@@ -44,6 +44,16 @@ submitBtn.addEventListener('click', function(event) {
         event.preventDefault();
         return false;
     }
+
+    var pass = inputValue.pass.value;
+    var pass_check = inputValue.pass_check.value;
+
+    if (pass !== pass_check) {
+        alert ("비밀번호가 일치하지 않습니다.");
+        inputValue.pass_check.focus();
+        event.preventDefault();
+        return false;
+    }
 });
 
 document.querySelector('.reset').addEventListener('click', function() {
