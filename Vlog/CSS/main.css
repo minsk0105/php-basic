@@ -30,7 +30,14 @@ body {
     font-size: 30px;
 }
 
-.login_btn {
+.btn_menu {
+    display: flex;
+    align-items: center;
+}
+
+.login_btn,
+.sign_btn {
+    margin-left: 25px;
     cursor: pointer;
     background-color: rgb(20, 20, 20);
     color: #eee;

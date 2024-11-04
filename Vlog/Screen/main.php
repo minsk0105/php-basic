@@ -3,9 +3,14 @@
 
     <header id="header">
         <h1 class="logo">PHP_Vlog</h1>
-        <a href="login.php">
-            <button class="login_btn">로그인</button>
-        </a>
+        <div class="btn_menu">
+            <a href="login.php">
+                <button class="login_btn">로그인</button>
+            </a>
+            <a href="register.php">
+                <button class="sign_btn">회원가입</button>
+            </a>
+        </div>
     </header>
 
 </body>

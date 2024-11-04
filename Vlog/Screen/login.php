@@ -13,6 +13,7 @@
                 <input type="password" name="pass" placeholder="비밀번호">
                 <input type="submit" value="로그인" class="submit_btn">
             </form>
+            <span class="non_members">아직 회원이 아니신가요?</span>
         </div>
         <a href="main.php">← 이전으로</a>
     </div>
