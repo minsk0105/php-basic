@@ -1,12 +1,21 @@
-<?php require_once("../Common/top.php") ?>
+<?php
+    require_once ("../DB/config.php");
+    require_once ("../Common/top.php");
+?>
 <body>
 
     <header id="header">
         <h1 class="logo">PHP_Vlog</h1>
         <div class="btn_menu">
-            <a href="login.php">
-                <button class="login_btn">로그인</button>
-            </a>
+            <?php if ($user_id) { ?>
+                <a href="../Process/logout_pro.php">
+                    <button class="login_btn">로그아웃</button>
+                </a>
+            <?php } else { ?>
+                <a href="login.php">
+                    <button class="login_btn">로그인</button>
+                </a>
+            <?php } ?>
             <a href="register.php">
                 <button class="sign_btn">회원가입</button>
             </a>
