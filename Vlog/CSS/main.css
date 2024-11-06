@@ -44,6 +44,31 @@ main {
     cursor: pointer;
 }
 
-.btn:hover {
+.btn:hover,
+.move:hover {
     font-weight: bold;
+}
+
+/* 소개 박스 */
+.intro {
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 30px;
+}
+
+.intro h4 {
+    margin: 20px 0;
+}
+
+.move {
+    width: 150px;
+    height: 35px;
+    background-color: #12B886;
+    color: #eee;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }

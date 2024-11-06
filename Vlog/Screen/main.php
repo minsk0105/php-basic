@@ -21,6 +21,14 @@
                 <?php } ?>
             </div>
         </header>
+        
+        <section class="intro">
+            <h2>웹사이트 소개</h2>
+            <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, maiores. Dolore molestias doloribus omnis natus itaque numquam esse, aspernatur nostrum explicabo quod tenetur similique cum, assumenda dicta! Enim, at sequi.</h4>
+            <a href="list.php">
+                <button class="move">게시판 바로가기</button>
+            </a>
+        </section>
     </main>
 
 </body>

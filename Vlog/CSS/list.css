@@ -1,0 +1,57 @@
+.board_area {
+    width: 100%;
+    padding: 0 20px;
+}
+
+.board_area > h1 {
+    margin: 20px 0;
+}
+
+.board_area > h4 {
+    margin-bottom: 30px;
+}
+
+/* 게시판 */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+th:nth-of-type(1) {
+    width: 10%;
+}
+th:nth-of-type(2) {
+    width: 40%;
+}
+th:nth-of-type(3) {
+    width: 20%;
+}
+th:nth-of-type(4) {
+    width: 20%;
+}
+th:nth-of-type(5) {
+    width: 10%;
+}
+
+th {
+    padding: 10px;
+    background-color: #12B886;
+    color: #eee;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgb(195, 195, 195);
+}
+
+.page_num {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.page_num a {
+    text-decoration: none;
+    cursor: pointer;
+}
