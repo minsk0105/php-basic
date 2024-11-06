@@ -14,7 +14,7 @@
             $pwk == $bpw;
         ?>
             <script>
-                location.replace("read.php?idx=<?= $bno_row['idx'] ?>");
+                location.replace("../Screen/read.php?idx=<?= $bno_row['idx'] ?>");
             </script>
         <?php } else { ?>
             <script>
