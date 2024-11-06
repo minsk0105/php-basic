@@ -111,9 +111,17 @@
                         <tr>
                             <td><?= $list['idx'] ?></td>
                             <td>
-                                <span class="read_check" data_action="read.php?idx=<?= $list['idx'] ?>">
-                                    <?= $list['title'] ?>
-                                </span>
+                                <?php
+                                    $lock_img = "<img src='../Img/lock_key.png' class='lock'></img>";
+
+                                    if ($board['lock_post'] == "1") { // lock_post값이 1이면 잠금 ?>
+                                        <span class="lock_check" style="cursor: pointer;" data-idx="<?= $board['idx'] ?>"><?= $title ?><?= $lock_img ?></span>
+                                    <?php } else { ?>
+                                        <span class="read_check" data_action="read.php?idx=<?= $list['idx'] ?>">
+                                            <?= $list['title'] ?>
+                                        </span>
+                                    <?php }
+                                ?>
                             </td>
                             <td><?= $list['name'] ?></td>
                             <td><?= $list['date'] ?></td>
@@ -160,6 +168,21 @@
 
     </section>
 
+    <!-- 비밀 글 모달창 -->
+    <div class="modal" id="modal_div">
+        <div class="modal_box">
+            <h2>비밀 글입니다.</h2>
+            <button type="button" class="close" data-dismiss="modal">x</button>
+
+            <form action="../Process/pass_check.php?idx=" method="post" id="modal_form" data-action="../Process/pass_check.php?idx=">
+                <p>
+                    비밀번호 <input type="password" name="pw_check">
+                    <input type="submit" class="btn" value="확인">
+                </p>
+            </form>
+        </div>
+    </div>
+
     <script>
         const titleBtn = document.querySelectorAll('.read_check');
 
@@ -168,6 +191,22 @@
                 var action_url = this.getAttribute("data_action");
                 location.href = action_url;
             });
+        });
+
+        const modal = document.querySelector('.modal');
+        const form = document.getElementById('modal_form');
+
+        document.querySelectorAll('.lock_check').forEach(function(item) {
+            item.addEventListener('click', function() {
+                modal.classList.add("open");
+                var action_url = form.getAttribute("data-action") + this.getAttribute("data-idx");
+                const push_idx = form.setAttribute('action', action_url);
+            });
+        });
+
+        const closeBtn = document.querySelector('.close');
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove("open");
         });
     </script>
 

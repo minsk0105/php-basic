@@ -93,3 +93,83 @@ td {
     display: flex;
     justify-content: right;
 }
+
+.lock {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+}
+
+.lock_check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 모달창 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: none;
+}
+
+.open {
+    display: block;
+}
+
+.modal_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 350px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.modal_box > h2 {
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(195, 195, 195);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background-color: inherit;
+    color: gray;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#modal_form {
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#modal_form p {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[name=pw_check] {
+    margin: 0 10px;
+    font-size: 16px;
+    padding: 5px 15px;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 5px;
+}
