@@ -1,0 +1,95 @@
+.board_area {
+    width: 100%;
+    overflow: hidden;
+}
+
+.board_area h1 {
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.board_area h4 {
+    margin-top: 20px;
+}
+
+#search_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search_box select,
+#search_box input {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid rgb(195, 195, 195);
+    font-size: 16px;
+}
+
+#search_box button,
+.btn {
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    background-color: #12B886;
+    border-color: #12B886;
+    color: #eee;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th {
+    padding: 10px;
+    background-color: #12B886;
+    color: #eee;
+    font-size: 16px;
+}
+
+tbody td:nth-of-type(1) {
+    width: 10%;
+}
+tbody td:nth-of-type(2) {
+    width: 40%;
+}
+tbody td:nth-of-type(3) {
+    width: 20%;
+}
+tbody td:nth-of-type(4) {
+    width: 20%;
+}
+tbody td:nth-of-type(5) {
+    width: 10%;
+}
+
+td {
+    background-color: aliceblue;
+    border-bottom: 1px solid rgb(195, 195, 195);
+    padding: 10px 5px;
+}
+
+.read_check {
+    cursor: pointer;
+}
+
+#page_num,
+#search_box {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#page_num a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.write_btn {
+    display: flex;
+    justify-content: right;
+}
