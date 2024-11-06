@@ -1,36 +1,40 @@
 <?php
-    $conn = mysqli_connect('localhost', 'root', '', 'vlog');
+    include_once "../DB/db_conn.php";
 
     $id = $_POST['id'];
     $pass = $_POST['pass'];
 
-    $sql = "SELECT * FROM user WHERE id = '$id'";
-    $result = mysqli_query($conn, $sql);
-    $num_row = mysqli_num_rows($result); // 유저 등록 여부
+    $sql = sql_query("SELECT * FROM user WHERE id = '$id'");
+    $isset_user = mysqli_num_rows($sql); // 유저 등록 여부
 
-    if (!$num_row) { ?>
+    if (!$isset_user) { ?>
         <script>
             alert ("등록되지 않은 아이디입니다.");
             history.back();
         </script>
     <?php } else {
-        $row = mysqli_fetch_array($result);
-        $db_pass = $row['pass'];
-        
-        mysqli_close($conn); // mysqli_connect 함수를 통해 연결된 객체를 해제하는 함수 ($conn)
+        $row = mysqli_fetch_array($sql);
+        $hashed_pass = $row['pass'];
 
-        if (!password_verify($pass, $db_pass)) { ?>
+        mysqli_close($conn);
+
+        if (password_verify($pass, $hashed_pass)) {
+            echo "
+                <script>
+                    alert ('로그인 되었습니다.');
+                    location.href = '../Screen/main.php';
+                </script>
+            ";
+            session_start(); // $_SESSION 전역변수 사용
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['user_name'] = $row['name'];
+            exit();
+        } else { ?>
             <script>
                 alert ("비밀번호가 일치하지 않습니다.");
                 history.back();
             </script>
         <?php
-            exit();
-        } else {
-            session_start();
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['user_name'] = $row['name'];
-            header("Location: ../Screen/list.php");
             exit();
         }
     }

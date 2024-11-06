@@ -1,4 +1,4 @@
-#wrap {
+.wrap {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -7,81 +7,56 @@
 }
 
 .login_box {
-    width: 350px;
-    /* height: 300px; */
+    width: 400px;
+    padding: 20px;
     background-color: white;
     overflow: hidden;
     border: none;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     text-align: center;
 }
 
 .login_box h2 {
-    margin: 15px 0;    
+    margin-bottom: 20px;
 }
 
 input {
     display: block;
     width: 100%;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 5px;
     padding: 10px 15px;
     font-size: 16px;
-    margin: 20px 0;
-    border: 1px solid rgb(214, 214, 214);
-    border-radius: 5px;
+    margin: 15px 0;
 }
 
 .submit_btn {
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+    background-color: #12B886;
     color: #eee;
-    background-color: #12b886;
-    border: 1px solid #12b886;
-    border-radius: 5px;
-}
-
-.non_members {
     cursor: pointer;
-}
-
-.non_members:hover {
+    border: none;
     font-weight: bold;
 }
 
-a {
+.sign_up {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.sign_up a {
+    cursor: pointer;
+}
+
+.prev {
     position: absolute;
     top: 20px;
     left: 20px;
+    cursor: pointer;
     text-decoration: none;
-    cursor: pointer;
-    font-weight: bold;
 }
 
-a:hover {
-    border-bottom: 1px solid gray;
-}
-
-.gender_box {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.gender_box label {
-    display: flex;
-    align-items: center;
-}
-
-.gender_box input {
-    width: 30px;
-}
-
-.reset {
-    cursor: pointer;
-}
-
-.reset:hover {
+.prev:hover {
     font-weight: bold;
 }

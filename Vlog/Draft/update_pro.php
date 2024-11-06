@@ -1,7 +1,5 @@
 <?php
 
-use LDAP\Result;
-
     include "../DB/config.php";
     include "../DB/db_conn.php";
 
