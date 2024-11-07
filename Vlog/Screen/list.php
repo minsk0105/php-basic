@@ -97,7 +97,7 @@
                                         if ($board['lock_post'] == "1") { // lock_post값이 1이면 잠금 ?>
                                             <span class="lock_check" style="cursor: pointer;" data-idx="<?= $list['idx'] ?>"><?= $title ?><?= $lock_img ?></span>
                                         <?php } else { ?>
-                                            <span class="read_check" data_action="read.php?idx=<?= $list['idx'] ?>">
+                                            <span class="read_check" data-action="read.php?idx=<?= $list['idx'] ?>">
                                                 <?= $list['title'] ?>
                                             </span>
                                         <?php }
@@ -112,6 +112,24 @@
                 ?>
             </table>
 
+            <!-- 비공개 글 모달창 -->
+            <div class="modal">
+                <div class="modal_box">
+                    <h2>이 글은 비공개입니다.</h2>
+
+                    <form action="../Process/pass_check.php?idx=" method="post" id="modal_form">
+                        <p>
+                            <b><span>비밀번호</span></b>
+                            <input type="password" name="pass_check" required>
+                            <input type="submit" value="확인">
+                        </p>
+                    </form>
+
+                    <span class="close">닫기</span>
+                </div>
+            </div>
+
+            <!-- 페이징 -->
             <div class="page_num">
                 <?php
                     if ($page <= 1) {
@@ -139,8 +157,34 @@
                     }
                 ?>
             </div>
+
+            <!-- 글쓰기 버튼 -->
+            <div class="write_btn">
+                <a href="write.php">
+                    <button class="btn">글쓰기</button>
+                </a>
+            </div>
+
+            <!-- 검색 영역 -->
+            <div class="search_box">
+                <form action="" method="get">
+
+                    <select name="category">
+                        <option value="title">제목</option>
+                        <option value="name">글쓴이</option>
+                        <option value="content">내용</option>
+                    </select>
+
+                    <input type="text" name="search" size="40" required>
+                    
+                    <button class="search_btn">검색</button>
+
+                </form>
+            </div>
         </section>
     </main>
+
+    <script src="../Js/list.js"></script>
 
 </body>
 </html>

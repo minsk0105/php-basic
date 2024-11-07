@@ -46,6 +46,7 @@ td {
     border-bottom: 1px solid rgb(195, 195, 195);
 }
 
+/* 페이징 */
 .page_num {
     margin-top: 30px;
     text-align: center;
@@ -54,4 +55,137 @@ td {
 .page_num a {
     text-decoration: none;
     cursor: pointer;
+}
+
+.write_btn {
+    display: flex;
+    justify-content: right;
+}
+
+/* 검색 영역 */
+.search_box {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+select {
+    padding: 5px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid rgb(195, 195, 195);
+}
+
+.search_box input {
+    padding: 5px 15px;
+    font-size: 16px;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 5px;
+}
+
+.search_btn {
+    padding: 5px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #12B886;
+    color: #eee;
+    cursor: pointer;
+}
+
+/* 비공개 글 */
+.lock {
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+}
+
+.lock_check,
+.read_check {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* 비공개 글 모달창 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.modal_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    padding: 20px;
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal_box h2 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(195, 195, 195);
+}
+
+#modal_form {
+    margin-top: 30px;
+}
+
+#modal_form p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal_form span {
+    font-size: 18px;
+}
+
+#modal_form input[type=password] {
+    margin: 0 10px;
+    font-size: 16px;
+    padding: 8px 15px;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 5px;
+}
+
+#modal_form input[type=submit] {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #12B886;
+    color: #eee;
+    cursor: pointer;
+}
+
+.close {
+    display: inline-block;
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 15px;
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 5px;
 }
