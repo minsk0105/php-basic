@@ -25,6 +25,7 @@
             title = '$title',
             content = '$content',
             date = '$date',
+            hit = '0',
             lock_post = '$lock_post'
     ");
 
