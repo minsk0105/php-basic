@@ -44,7 +44,11 @@
                 </table>
 
                 <div class="check">
-                    <input type="checkbox" value="1" name="lock_post"><span>비공개</span>
+                    <?php if ($row['lock_post'] === "1") { ?>
+                        <input type="checkbox" value="1" name="lock_post" checked><span>비공개</span>
+                    <?php } else { ?>
+                        <input type="checkbox" value="1" name="lock_post"><span>비공개</span>
+                    <?php } ?>
                 </div>
 
                 <button type="submit" class="btn push">수정하기</button>
