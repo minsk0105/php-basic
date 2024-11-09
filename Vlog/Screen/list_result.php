@@ -3,15 +3,16 @@
     include_once "../DB/db_conn.php";
     include_once "../Common/header.php";
 
+    // 현재 페이지 번호를 확인
     if (isset($_GET['page'])) {
         $page = $_GET['page']; // 1, 2, 3, 4, 5
     } else {
         $page = 1;
     }
 
-    $sql = sql_query("SELECT * FROM board ORDER BY idx DESC");
+    $category = $_GET['category'];
+    $search = $_GET['search'];
 ?>
-
 <head>
     <link rel="stylesheet" href="../CSS/list.css">
 </head>
@@ -38,6 +39,17 @@
             <h1>자유게시판</h1>
             <h4>자유롭게 글을 쓸 수 있는 게시판입니다.</h4>
 
+            <?php
+                if ($category == 'title') {
+                    $keyword = '제목';
+                } else if ($category == 'name') {
+                    $keyword = '글쓴이';
+                } else {
+                    $keyword = '내용';
+                }
+            ?>
+            <h1><?= $keyword ?> 에서 <b><?= $search ?></b> 검색결과</h1>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -50,8 +62,8 @@
                 </thead>
 
                 <?php
-                    $paging_sql = sql_query("SELECT * FROM board");
-                    $total_record = mysqli_num_rows($paging_sql); // 전체 레코드 개수
+                    $paging_sql = sql_query("SELECT * FROM board WHERE $category LIKE '%{$search}%' ORDER BY idx DESC");
+                    $total_record = mysqli_num_rows($paging_sql); // 검색된 전체 레코드 개수
 
                     $block_list = 5;
                     $block_cnt = 5;
@@ -67,45 +79,55 @@
                     $total_block = ceil($total_page / $block_cnt); // 블록의 총 개수
                     $page_start = ($page - 1) * $block_list; // SQL문 LIMIT 조건 사용
 
-                    // 게시글 정보 가져오기
-                    $getList_sql = sql_query("SELECT * FROM board ORDER BY idx DESC LIMIT $page_start, $block_list");
+                    // 검색된 게시글 정보 가져오기
+                    $getList_sql = sql_query("SELECT * FROM board WHERE $category LIKE '%{$search}%' ORDER BY idx DESC LIMIT $page_start, $block_list");
+                    $search_num = mysqli_num_rows($getList_sql);
                 ?>
 
                 <?php
-                    while ($board = mysqli_fetch_array($getList_sql)) {
-                        $title = $board['title'];
-
-                        if (strlen($title) > 30) {
-                            $title = str_replace($board['title'], mb_substr($board['title'], 0, 30, "utf-8") . "...", $board['title']);
-                        }
-                    
-                        $list = array (
-                            "idx" => $board['idx'],
-                            "title" => $title,
-                            "name" => $board['name'],
-                            "date" => $board['date'],
-                            "hit" => $board['hit']
-                        );
-                    ?>
+                    if (!$search_num == 0) {
+                        while ($board = mysqli_fetch_array($getList_sql)) {
+                            $title = $board['title'];
+    
+                            if (strlen($title) > 30) {
+                                $title = str_replace($board['title'], mb_substr($board['title'], 0, 30, "utf-8") . "...", $board['title']);
+                            }
+                        
+                            $list = array (
+                                "idx" => $board['idx'],
+                                "title" => $title,
+                                "name" => $board['name'],
+                                "date" => $board['date'],
+                                "hit" => $board['hit']
+                            );
+    
+                            ?>
+                                <tbody>
+                                    <tr>
+                                        <td><?= $list['idx'] ?></td>
+                                        <td>
+                                            <?php
+                                                $lock_img = "<img src='../Img/lock_key.png' class='lock'></img>";
+    
+                                                if ($board['lock_post'] == "1") { // lock_post값이 1이면 잠금 ?>
+                                                    <span class="lock_check" style="cursor: pointer;" data-idx="<?= $list['idx'] ?>"><?= $title ?><?= $lock_img ?></span>
+                                                <?php } else { ?>
+                                                    <span class="read_check" data-action="read.php?idx=<?= $list['idx'] ?>">
+                                                        <?= $list['title'] ?>
+                                                    </span>
+                                                <?php }
+                                            ?>
+                                        </td>
+                                        <td><?= $list['name'] ?></td>
+                                        <td><?= $list['date'] ?></td>
+                                        <td><?= $list['hit'] ?></td>
+                                    </tr>
+                                </tbody>
+                        <?php }
+                    } else { ?>
                         <tbody>
                             <tr>
-                                <td><?= $list['idx'] ?></td>
-                                <td>
-                                    <?php
-                                        $lock_img = "<img src='../Img/lock_key.png' class='lock'></img>";
-
-                                        if ($board['lock_post'] == "1") { // lock_post값이 1이면 잠금 ?>
-                                            <span class="lock_check" style="cursor: pointer;" data-idx="<?= $list['idx'] ?>"><?= $title ?><?= $lock_img ?></span>
-                                        <?php } else { ?>
-                                            <span class="read_check" data-action="read.php?idx=<?= $list['idx'] ?>">
-                                                <?= $list['title'] ?>
-                                            </span>
-                                        <?php }
-                                    ?>
-                                </td>
-                                <td><?= $list['name'] ?></td>
-                                <td><?= $list['date'] ?></td>
-                                <td><?= $list['hit'] ?></td>
+                                <td colspan="5">검색하신 결과가 없습니다.</td>
                             </tr>
                         </tbody>
                     <?php }
@@ -135,16 +157,16 @@
                     if ($page <= 1) {
                         // empty
                     } else {
-                        echo "<a href='list.php?page=1'> 처음으로 </a>";
+                        echo "<a href='list_result.php?category=$category&search=$search&page=1'> 처음으로 </a>";
                         $prev = $page - 1;
-                        echo "<a href='list.php?page=$prev'> ◀ </a>";
+                        echo "<a href='list_result.php?category=$category&search=$search&page=$prev'> ◀ </a>";
                     }
 
                     for ($i = $block_start; $i <= $block_end; $i++) {
                         if ($page == $i) {
                             echo "<b style='color: #12B886;'> $i </b>";
                         } else {
-                            echo "<a href='list.php?page=$i'> $i </a>";
+                            echo "<a href='list_result.php?category=$category&search=$search&page=$i'> $i </a>";
                         }
                     }
 
@@ -152,8 +174,8 @@
                         // empty
                     } else {
                         $next = $page + 1;
-                        echo "<a href='list.php?page=$next'> ▶ </a>";
-                        echo "<a href='list.php?page=$total_page'> 마지막 </a>";
+                        echo "<a href='list_result.php?category=$category&search=$search&page=$next'> ▶ </a>";
+                        echo "<a href='list_result.php?category=$category&search=$search&page=$total_page'> 마지막 </a>";
                     }
                 ?>
             </div>
@@ -177,7 +199,7 @@
 
                     <input type="text" name="search" size="40" required>
                     
-                    <button type="submit" class="search_btn">검색</button>
+                    <button class="search_btn">검색</button>
 
                 </form>
             </div>

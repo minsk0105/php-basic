@@ -118,14 +118,25 @@
                     <a href="update.php?idx=<?= $row['idx'] ?>">
                         <button type="button" class="btn">수정</button>
                     </a>
-                    <a href="delete.php?idx=<?= $row['idx'] ?>">
-                        <button type="button" class="btn">삭제</button>
+                    <a href="../Process/delete_pro.php?idx=<?= $row['idx'] ?>">
+                        <button type="button" class="btn delete_btn">삭제</button>
                     </a>
                 <?php } ?>
             </div>
         </div>
     </section>
     <a href="list.php" class="prev">← 이전으로</a>
+
+    <script>
+        const deleteBtn = document.querySelector('.delete_btn');
+
+        deleteBtn.addEventListener('click', function(event) {
+            if (!confirm ("게시글을 삭제하시겠습니까?")) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
 
 </body>
 </html>
