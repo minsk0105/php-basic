@@ -18,8 +18,6 @@
         WHERE
             idx = '$idx'
     ");
-    
-    mysqli_close($conn);
 ?>
 
 <head>
@@ -121,6 +119,16 @@
                     </a>
                     <a href="../Process/delete_pro.php?idx=<?= $row['idx'] ?>">
                         <button type="button" class="btn delete_btn">삭제</button>
+                        <script>
+                            const deleteBtn = document.querySelector('.delete_btn');
+                                            
+                            deleteBtn.addEventListener('click', function(event) {
+                                if (!confirm ("게시글을 삭제하시겠습니까?")) {
+                                    event.preventDefault();
+                                    return false;
+                                }
+                            });
+                        </script>
                     </a>
                 <?php } ?>
             </div>
@@ -130,41 +138,59 @@
                 <!-- 댓글 작성 폼 -->
                 <div class="dat_write">
                     <h2 class="reply_title">댓글</h2>
-                    <input type="hidden" name="thisIdx" value="<?= $idx ?>">
-                    <input type="hidden" name="datUser" value="<?= $user_id ?>">
+                    <form action="../Process/reply_pro.php" method="post">
+                        <input type="hidden" name="thisIdx" class="thisIdx" value="<?= $idx ?>">
+                        <input type="hidden" name="datUser" class="datUser" value="<?= $user_id ?>">
 
-                    <div class="dat_box">
-                        <textarea name="content" class="dat_con"></textarea>
-                        <button class="btn">댓글 작성</button>
-                    </div>
+                        <div class="dat_box">
+                            <textarea name="content" class="dat_con"></textarea>
+                            <button type="submit" class="btn reply_btn">댓글 작성</button>
+                        </div>
+                    </form>
                 </div>
 
                 <!-- 댓글 목록 -->
-                <div class="reply_view">
+                <?php
+                    $road_reply = sql_query("SELECT * FROM comment WHERE con_num = '$idx' ORDER BY idx DESC");
+                    mysqli_close($conn);
+                    while ($dat_row = mysqli_fetch_array($road_reply)) {
+                            $ymd = substr($dat_row['date'], 0, 10);
+                        ?>
+                        <div class="reply_view">
+                            <div class="dat_view">
+                                <div class="dat_name"><b><?= $dat_row['name'] ?></b> <span>| <?= $ymd ?></span></div>
 
-                    <div class="dat_view">
-                        <div class="dat_name"><b>admin</b> <span>| 2024-11-09</span></div>
-                        <div class="dat_btn_menu">
-                            <a href="">삭제</a>
+                                <form action="../Process/delete_reply.php" method="post" class="dat_btn_menu">
+                                    <input type="hidden" name="idx" value="<?= $dat_row['idx'] ?>">
+
+                                    <?php if ($user_id === $dat_row['name']) { ?>
+                                        <button type="submit" class="del_reply">삭제</button>
+                                    <?php } else {
+                                        // empty
+                                    } ?>
+                                </form>
+
+                                <div class="dat_content"><?= $dat_row['content'] ?></div>
+                            </div>
                         </div>
-                        <div class="dat_content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi cupiditate labore sunt atque dignissimos ea voluptatum illum, harum eos exercitationem quia pariatur. Repudiandae illo eius minima hic. Itaque, atque deleniti!</div>
-                    </div>
-                </div>
+                    <?php }
+                ?>
             </div>
         </div>
     </section>
     <a href="list.php" class="prev">← 이전으로</a>
 
     <script>
-        const deleteBtn = document.querySelector('.delete_btn');
+        document.querySelectorAll('.del_reply').forEach(function(btn) {
+            btn.addEventListener('click', function(event) {
 
-        deleteBtn.addEventListener('click', function(event) {
-            if (!confirm ("게시글을 삭제하시겠습니까?")) {
-                event.preventDefault();
-                return false;
-            }
+                if (!confirm ("댓글을 삭제하시겠습니까?")) {
+                    event.preventDefault();
+                    return false;
+                }
+                
+            });
         });
     </script>
-
 </body>
 </html>
