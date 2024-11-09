@@ -24,6 +24,7 @@
 
 <head>
     <link rel="stylesheet" href="../CSS/write.css">
+    <link rel="stylesheet" href="../CSS/reply.css">
 </head>
 <style>
     .write_box {
@@ -122,6 +123,33 @@
                         <button type="button" class="btn delete_btn">삭제</button>
                     </a>
                 <?php } ?>
+            </div>
+
+            <div class="reply_container">
+                
+                <!-- 댓글 작성 폼 -->
+                <div class="dat_write">
+                    <h2 class="reply_title">댓글</h2>
+                    <input type="hidden" name="thisIdx" value="<?= $idx ?>">
+                    <input type="hidden" name="datUser" value="<?= $user_id ?>">
+
+                    <div class="dat_box">
+                        <textarea name="content" class="dat_con"></textarea>
+                        <button class="btn">댓글 작성</button>
+                    </div>
+                </div>
+
+                <!-- 댓글 목록 -->
+                <div class="reply_view">
+
+                    <div class="dat_view">
+                        <div class="dat_name"><b>admin</b> <span>| 2024-11-09</span></div>
+                        <div class="dat_btn_menu">
+                            <a href="">삭제</a>
+                        </div>
+                        <div class="dat_content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi cupiditate labore sunt atque dignissimos ea voluptatum illum, harum eos exercitationem quia pariatur. Repudiandae illo eius minima hic. Itaque, atque deleniti!</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
