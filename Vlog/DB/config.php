@@ -12,4 +12,10 @@
     } else {
         $user_name = "";
     }
+
+    if (isset($_SESSION['role'])) {
+        $role = $_SESSION['role'];
+    } else {
+        $role = "";
+    }
 ?>

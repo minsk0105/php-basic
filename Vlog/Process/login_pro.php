@@ -19,15 +19,25 @@
         mysqli_close($conn);
 
         if (password_verify($pass, $hashed_pass)) {
-            echo "
-                <script>
-                    alert ('로그인 되었습니다.');
-                    location.href = '../Screen/main.php';
-                </script>
-            ";
+            if ($row['role'] === "ADMIN") {
+                echo "
+                    <script>
+                        alert ('관리자 계정으로 로그인 되었습니다.');
+                        location.href = '../Screen/main.php';
+                    </script>
+                ";
+            } else {
+                echo "
+                    <script>
+                        alert ('로그인 되었습니다.');
+                        location.href = '../Screen/main.php';
+                    </script>
+                ";
+            }
             session_start(); // $_SESSION 전역변수 사용
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['name'];
+            $_SESSION['role'] = $row['role'];
             exit();
         } else { ?>
             <script>

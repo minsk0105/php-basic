@@ -113,7 +113,7 @@
                 <a href="list.php">
                     <button type="button" class="btn">목록</button>
                 </a>
-                <?php if ($user_id == $row['name']) { ?>
+                <?php if ($user_id == $row['name'] || $role == "ADMIN") { ?>
                     <a href="update.php?idx=<?= $row['idx'] ?>">
                         <button type="button" class="btn">수정</button>
                     </a>
@@ -163,7 +163,7 @@
                                 <form action="../Process/delete_reply.php" method="post" class="dat_btn_menu">
                                     <input type="hidden" name="idx" value="<?= $dat_row['idx'] ?>">
 
-                                    <?php if ($user_id === $dat_row['name']) { ?>
+                                    <?php if ($user_id === $dat_row['name'] || $role == "ADMIN") { ?>
                                         <button type="submit" class="del_reply">삭제</button>
                                     <?php } else {
                                         // empty

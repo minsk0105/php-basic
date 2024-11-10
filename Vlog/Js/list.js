@@ -13,8 +13,13 @@ nonSecret.forEach(function(item) {
 
 secret.forEach(function(item) {
     item.addEventListener('click', function() {
-        modal.classList.add("show");
+        if (this.getAttribute("data-check") === 'ADMIN') {
+            var action_url = this.getAttribute("data-action") + this.getAttribute("data-idx");
+            location.href = action_url;
+            return;
+        }
         var action_url = form.getAttribute("action") + this.getAttribute("data-idx");
+        modal.classList.add("show");
         form.setAttribute('action', action_url);
     });
 });

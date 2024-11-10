@@ -95,7 +95,9 @@
                                         $lock_img = "<img src='../Img/lock_key.png' class='lock'></img>";
 
                                         if ($board['lock_post'] == "1") { // lock_post값이 1이면 잠금 ?>
-                                            <span class="lock_check" style="cursor: pointer;" data-idx="<?= $list['idx'] ?>"><?= $title ?><?= $lock_img ?></span>
+                                            <span class="lock_check" style="cursor: pointer;" data-action="read.php?idx=" data-idx="<?= $list['idx'] ?>" data-check="<?= $role ?>">
+                                                <?= $title ?><?= $lock_img ?>
+                                            </span>
                                         <?php } else { ?>
                                             <span class="read_check" data-action="read.php?idx=<?= $list['idx'] ?>">
                                                 <?= $list['title'] ?>
